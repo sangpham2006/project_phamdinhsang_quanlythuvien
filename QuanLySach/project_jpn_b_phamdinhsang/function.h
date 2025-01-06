@@ -1,0 +1,18 @@
+void menuSach();
+void displayMenuLibrary();
+void displayBooks();
+void isValidDate();
+void addBook();
+void editBook();
+void deleteBook();
+void sortBooksByPrice();
+void toLowerCase();
+void searchBookByTitle();
+void ReadListBooksFromFile();
+void saveBooksToFile();
+void menuAmin();
+void loginAdmin();
+int authenticate();
+void getPassword(char *password);
+void menuManagement();
+void displayMenuManagement();
