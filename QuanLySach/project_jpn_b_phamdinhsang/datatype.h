@@ -20,4 +20,3 @@ struct member {
 	bool status;
 	struct Book BrrowedBooks[];
 };
-
