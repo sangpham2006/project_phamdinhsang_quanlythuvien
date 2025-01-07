@@ -20,19 +20,39 @@ void menuSach() {
     printf("      [4] Edit A Book.\n");
     printf("      [5] Delete A Book.\n");
     printf("      [6] Sort Books by Price.\n");
-    printf("      [7] Read Books From File");
+    printf("      [7] Read Books From File.\n");
     printf("      [0] Exit the Program.\n");
     printf("      ==========================\n");
-    printf("Enter The Choice: ");
+   
+    
 }
 
 void displayMenuLibrary(){
 	int choice;
+	int valid;
     do {
         menuSach();
-        scanf("%d", &choice);
+        valid = 0;
+         do {
+            char inputBuffer[10];
+            printf("Enter your choice: ");
+            fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+            inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+            if (strlen(inputBuffer) == 0) {
+                printf("Error: Choice cannot be empty. Please try again.\n");
+                continue;
+            }
+
+            if (sscanf(inputBuffer, "%d", &choice) != 1) {
+                printf("Error: Invalid input. Please enter a number.\n");
+                continue;
+            }
+
+            valid = 1;
+        } while (!valid);
 		
-		while (getchar() != '\n');
         switch (choice) {
             case 1:
                 addBook();
@@ -96,9 +116,32 @@ void displayBooks() {
 
     printf("\n");
     char choice;
+    int valid;
     do {
-        printf("Go back (b)? or Exit (0)?: ");
-        scanf(" %c", &choice);
+       
+       
+        
+         valid = 0;
+        do {
+            char inputBuffer[10];
+             printf("Go back (b)? or Exit (0)?: ");
+            fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+            inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+            if (strlen(inputBuffer) == 0) {
+                printf("Error: Choice cannot be empty. Please try again.\n");
+                continue;
+            }
+
+            if (sscanf(inputBuffer, "%s", &choice) != 1) {
+                printf("Error: Invalid input. Please try again.\n");
+                continue;
+            }
+
+            valid = 1;
+        } while (!valid);
+        
         if (choice == 'b') {
             return; 
         } else if (choice == '0') {
@@ -313,23 +356,48 @@ void addBook() {
 
     printf("\n");
     printf("Book Added Successfully.\n");
-    printf("\n");
-
+       printf("\n");
     char choice;
+    valid;
     do {
-        printf("Go back (b)? or Exit (0)?: ");
-        scanf(" %c", &choice);
+       
+       
+        
+         valid = 0;
+        do {
+            char inputBuffer[10];
+             printf("Go back (b)? or Exit (0)?: ");
+            fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+            inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+            if (strlen(inputBuffer) == 0) {
+                printf("Error: Choice cannot be empty. Please try again.\n");
+                continue;
+            }
+
+            if (sscanf(inputBuffer, "%s", &choice) != 1) {
+                printf("Error: Invalid input. Please try again.\n");
+                continue;
+            }
+
+            valid = 1;
+        } while (!valid);
+        
         if (choice == 'b') {
             return; 
         } else if (choice == '0') {
             printf("==========Thank You==========\n");
             printf("==========See You Soon==========\n\n");
-            printf("--------------------------------------\n");
+            printf("--------------------------------------");
             exit(0); 
         } else {
             printf("Invalid choice. Please enter 'b' or '0'.\n");
         }
     } while (choice != 'b' && choice != '0');
+    printf("\n");
+    printf("\n");
+    printf("\n");
 }
 
 
@@ -338,8 +406,26 @@ void editBook() {
     printf("                         **** Edit A Book ****\n");
     char id[10];
     
-    printf("Enter the Book ID : ");
-    scanf("%s", id);
+    int valid = 0;
+    do {
+        char inputBuffer[10];
+         printf("Enter the Book ID : ");
+        fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+        inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+        if (strlen(inputBuffer) == 0) {
+            printf("Error: Choice cannot be empty. Please try again.\n");
+            continue;
+        }
+
+        if (sscanf(inputBuffer, "%10s", id) != 1) {
+            printf("Error: Invalid input. Please enter the ID to Edit.\n");
+            continue;
+        }
+
+        valid = 1; 
+    } while (!valid); 
 
     int index = -1;
     int i;
@@ -371,7 +457,7 @@ void editBook() {
 	       books[index].publication.year);
 	printf("------------------------------\n");
 	printf("                  ***************Update The New Book *****\n");
-	int valid;
+	valid;
     do {
         valid = 1; 
         char inputBuffer[30];
@@ -473,7 +559,7 @@ void editBook() {
 	    char inputBuffer[50];
 	    printf("Enter the Publication Date (dd mm yyyy): ");
 	    fgets(inputBuffer, sizeof(inputBuffer), stdin);
-	    inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; // Lo?i b? ký t? newline
+	    inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; // Lo?i b? kÃ½ t? newline
 	
 	    if (strlen(inputBuffer) == 0) {
 	        printf("Error: Publication date cannot be empty. Please enter a valid date.\n");
@@ -495,10 +581,34 @@ void editBook() {
     printf("Book Updated successfully.\n");
  	saveBooksToFile();
   
+        printf("\n");
     char choice;
+    valid;
     do {
-        printf("Go back (b)? or Exit (0)?: ");
-        scanf(" %c", &choice);
+       
+       
+        
+         valid = 0;
+        do {
+            char inputBuffer[10];
+             printf("Go back (b)? or Exit (0)?: ");
+            fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+            inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+            if (strlen(inputBuffer) == 0) {
+                printf("Error: Choice cannot be empty. Please try again.\n");
+                continue;
+            }
+
+            if (sscanf(inputBuffer, "%s", &choice) != 1) {
+                printf("Error: Invalid input. Please try again.\n");
+                continue;
+            }
+
+            valid = 1;
+        } while (!valid);
+        
         if (choice == 'b') {
             return; 
         } else if (choice == '0') {
@@ -510,16 +620,29 @@ void editBook() {
             printf("Invalid choice. Please enter 'b' or '0'.\n");
         }
     } while (choice != 'b' && choice != '0');
+    printf("\n");
+    printf("\n");
+    printf("\n");
 }
 
 //Tiet 3
 void deleteBook() {
-	printf("                         **** Delete A Book ****\n");
-    char id[10];
-    printf("Enter the Book ID to delete: ");
-    scanf("%s", id);
+    printf("                         **** Delete A Book ****\n");
+    char id[20];
 
-    
+    while (1) {
+        printf("Enter the Book ID: ");
+        fgets(id, sizeof(id), stdin);
+        id[strcspn(id, "\n")] = '\0'; 
+
+        if (strlen(id) == 0) {
+            printf("Error: Book ID cannot be empty. Please try again.\n");
+        } else {
+            break;
+        }
+    }
+
+    // Search for the book by ID
     int index = -1;
     int i;
     for (i = 0; i < bookCount; i++) {
@@ -533,54 +656,66 @@ void deleteBook() {
         printf("Error: Book with ID '%s' not found.\n", id);
         return;
     }
-    
-    printf("One Book Found for ID: %s\n\n", books[index].bookId);
-	printf("Book Information\n");
-	printf("------------------------------\n");
-	printf("%-15s: %s\n", "ID", books[index].bookId);
-	printf("%-15s: %s\n", "Title", books[index].title);
-	printf("%-15s: %s\n", "Author", books[index].author);
-	printf("%-15s: %d\n", "Quantity", books[index].quantity);
-	printf("%-15s: %d\n", "Price", books[index].price);
-	printf("%-15s: %02d/%02d/%04d\n\n\n", "Publication Date", 
-	       books[index].publication.day, 
-	       books[index].publication.month, 
-	       books[index].publication.year);
 
-  
-    printf("Are you sure you want to delete this book? (Y/N): ");
+    printf("One Book Found for ID: %s\n\n", books[index].bookId);
+    printf("Book Information\n");
+    printf("------------------------------\n");
+    printf("%-15s: %s\n", "ID", books[index].bookId);
+    printf("%-15s: %s\n", "Title", books[index].title);
+    printf("%-15s: %s\n", "Author", books[index].author);
+    printf("%-15s: %d\n", "Quantity", books[index].quantity);
+    printf("%-15s: %d\n", "Price", books[index].price);
+    printf("%-15s: %02d/%02d/%04d\n\n", "Publication Date",
+           books[index].publication.day,
+           books[index].publication.month,
+           books[index].publication.year);
+
+    
     char confirm;
-    scanf(" %c", &confirm);
-    if (confirm == 'Y' || confirm == 'y') {
-       
+    printf("Are you sure you want to delete this book? (Y/N): ");
+    while (1) {
+        scanf(" %c", &confirm);
+        confirm = toupper(confirm); 
+        if (confirm == 'Y' || confirm == 'N') {
+            break;
+        } else {
+            printf("Invalid input. Please enter 'Y' or 'N': ");
+        }
+    }
+
+    if (confirm == 'Y') {
+        
         int j;
         for (j = index; j < bookCount - 1; j++) {
             books[j] = books[j + 1];
         }
         bookCount--;
         printf("Book Deleted Successfully.\n");
-        
+
         saveBooksToFile();
     } else {
         printf("Book Deletion Cancelled.\n");
     }
 
     char choice;
-    do {
-        printf("Go back (b)? or Exit (0)?: ");
+    while (1) {
+        printf("Go back (b) or Exit (0): ");
         scanf(" %c", &choice);
+        while (getchar() != '\n'); 
+
         if (choice == 'b') {
             return;
         } else if (choice == '0') {
-            printf("==========Thank You==========\n");
-            printf("==========See You Soon==========\n\n");
-            printf("--------------------------------------");
-            exit(0); 
+            printf("========== Thank You ==========\n");
+            printf("========== See You Soon ==========\n\n");
+            printf("--------------------------------------\n");
+            exit(0);
         } else {
             printf("Invalid choice. Please enter 'b' or '0'.\n");
         }
-    } while (choice != 'b' && choice != '0');
+    }
 }
+
 
 //Tiet 3
 void sortBooksByPrice() {
@@ -589,7 +724,26 @@ void sortBooksByPrice() {
     printf("[1] Ascending (Low to High)\n");
     printf("[2] Descending (High to Low)\n");
     printf("Enter your choice: ");
-    scanf("%d", &choice);
+    int valid = 0;
+    do {
+        char inputBuffer[10];
+        printf("Enter your choice: ");
+        fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+        inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+        if (strlen(inputBuffer) == 0) {
+            printf("Error: Choice cannot be empty. Please try again.\n");
+            continue;
+        }
+
+        if (sscanf(inputBuffer, "%d", &choice) != 1) {
+            printf("Error: Invalid input. Please enter a number.\n");
+            continue;
+        }
+
+        valid = 1;
+    } while (!valid);
 
 	int i;
     for (i = 0; i < bookCount - 1; i++) {
@@ -618,9 +772,27 @@ void toLowerCase(char* str) {
 //Tiet 4
 void searchBookByTitle() {
     char keyword[30];
-    char keywordLower[30];
-    printf("Enter the title keyword to search: ");
-    scanf(" %[^\n]%*c", keyword);
+    char keywordLower[30];    
+    int valid = 0;
+    do {
+        char inputBuffer[10];
+        printf("Enter the title keyword to search: ");
+        fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+        inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+        if (strlen(inputBuffer) == 0) {
+            printf("Error: The title keyword cannot be empty. Please try again.\n");
+            continue;
+        }
+
+        if (sscanf(inputBuffer, "%50s", keyword) != 1) {
+            printf("Error: Invalid input. Please enter the ID.\n");
+            continue;
+        }
+
+        valid = 1; 
+    } while (!valid); 
     
     strcpy(keywordLower, keyword);
     toLowerCase(keywordLower);
@@ -727,7 +899,6 @@ void menuAmin() {
     printf("      [1] Admin.\n");
     printf("      [0] Exit the Program.\n");
     printf("      ==========================\n");
-    printf("Enter The Choice: ");
 }
 
 
@@ -744,55 +915,80 @@ void loginAdmin() {
 }
 
 
-//Xac thuc
-int authenticate(){
-	char username[MAX_ADMIN], password[MAX_ADMIN];
-	char inputUser[MAX_ADMIN], inputPass[MAX_ADMIN];
-	
-	FILE *file = fopen("admin.txt", "r");
-	if(file == NULL){
-		printf("Error: Cannot open admin.txt file.\n");
-		exit(1);
-	}
-	fscanf(file, "%[^,],%s", username, password);
-	fclose(file);
-	
-	while(1){
-		printf("Enter Username: ");
-		scanf("%s", inputUser);
-		printf("Enter Password: ");
-		getPassword(inputPass);
-		
-	
+int authenticate() {
+    char username[MAX_ADMIN], password[MAX_ADMIN];
+    char inputUser[MAX_ADMIN], inputPass[MAX_ADMIN];
+
+   
+    FILE *file = fopen("admin.txt", "r");
+    if (file == NULL) {
+        printf("Error: Cannot open admin.txt file.\n");
+        exit(1);
+    }
+
+   
+    if (fscanf(file, "%[^,],%s", username, password) != 2) {
+        printf("Error: Invalid admin.txt format.\n");
+        fclose(file);
+        exit(1);
+    }
+    fclose(file);
+
+    while (1) {
+      
+        while (1) {
+            printf("Enter Username: ");
+            fgets(inputUser, sizeof(inputUser), stdin);
+            inputUser[strcspn(inputUser, "\n")] = '\0';
+
+            if (strlen(inputUser) == 0) {
+                printf("Error: Username cannot be empty. Please try again.\n");
+            } else {
+                break;
+            }
+        }
+
+       
+        while (1) {
+            printf("Enter Password: ");
+            getPassword(inputPass);
+
+            if (strlen(inputPass) == 0) {
+                printf("Error: Password cannot be empty. Please try again.\n");
+            } else {
+                break;
+            }
+        }
+
+       
         if (strcmp(username, inputUser) == 0 && strcmp(password, inputPass) == 0) {
-        	printf("Login successful!\n");
-        	printf("      ==========================\n");
+            printf("Login successful!\n");
+            printf("      ==========================\n");
             displayMenuManagement();
             return 1; 
         } else {
             printf("Invalid username or password. Please try again.\n");
         }
-		
-	}
+    }
 }
-
 
 
 void getPassword(char *password) {
     int i = 0;
     char ch;
-    while ((ch = getch()) != '\r') {
-        if (ch == '\b' && i > 0) {
+    while ((ch = getch()) != '\r') { 
+        if (ch == '\b' && i > 0) { 
             printf("\b \b");
             i--;
-        } else if (ch != '\b') { 
+        } else if (ch != '\b' && i < MAX_ADMIN - 1) { 
             printf("*");
             password[i++] = ch;
         }
     }
-    password[i] = '\0'; 
+    password[i] = '\0';
     printf("\n");
 }
+
 
 void menuManagement() {
     printf("***Book Management System Using C***\n");
@@ -803,7 +999,7 @@ void menuManagement() {
     printf("      [2] Customer management.\n");
 	printf("      [3] EXITS the Program.\n");
     printf("      ==========================\n");
-    printf("Enter The Choice: ");
+   
 }
 
 
@@ -811,8 +1007,27 @@ void displayMenuManagement(){
 	int choice;
     do {
         menuManagement();
-        scanf("%d", &choice);
+		int valid = 0;
+        do {
+            char inputBuffer[10];
+            printf("Enter your choice: ");
+            fgets(inputBuffer, sizeof(inputBuffer), stdin);
 
+            inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+            if (strlen(inputBuffer) == 0) {
+                printf("Error: Choice cannot be empty. Please try again.\n");
+                continue;
+            }
+
+            if (sscanf(inputBuffer, "%d", &choice) != 1) {
+                printf("Error: Invalid input. Please enter a number.\n");
+                continue;
+            }
+
+            valid = 1;
+        } while (!valid);
+        
         switch (choice) {
             case 1:
                 displayMenuLibrary();
@@ -825,6 +1040,5 @@ void displayMenuManagement(){
         }
     } while (choice != 0);
 }
-
 
 
