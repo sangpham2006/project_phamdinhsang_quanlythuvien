@@ -4,10 +4,31 @@
 
 int main() {
     int choice;
-
+	int valid;
     do {
+    	printf("Enter The Choice: ");
         menuAmin();
-        scanf("%d", &choice);
+        valid = 0;
+        do {
+            char inputBuffer[10];
+            printf("Enter your choice: ");
+            fgets(inputBuffer, sizeof(inputBuffer), stdin);
+
+            inputBuffer[strcspn(inputBuffer, "\n")] = '\0'; 
+
+            if (strlen(inputBuffer) == 0) {
+                printf("Error: Choice cannot be empty. Please try again.\n");
+                continue;
+            }
+
+            if (sscanf(inputBuffer, "%d", &choice) != 1) {
+                printf("Error: Invalid input. Please enter a number.\n");
+                continue;
+            }
+
+            valid = 1;
+        } while (!valid);
+        
         switch (choice) {
             case 1:
                 loginAdmin();
@@ -22,4 +43,3 @@ int main() {
 
     return 0;
 }
-
